@@ -1,0 +1,87 @@
+openapi: 3.0.3
+info:
+  title: Meditation App API
+  version: 1.0.0
+  description: |
+    A sample API for a meditation app.  
+    Provides access to meditation sessions and user activity tracking.
+
+servers:
+  - url: https://api.meditationapp.com/v1
+
+paths:
+  /meditations:
+    get:
+      summary: Get a list of available meditations
+      description: Retrieve all meditations with basic details.
+      responses:
+        '200':
+          description: A list of meditations
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  meditations:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: "med_001"
+                        title:
+                          type: string
+                          example: "Morning Calm"
+                        duration_minutes:
+                          type: integer
+                          example: 10
+                        category:
+                          type: string
+                          example: "Mindfulness"
+
+  /sessions:
+    post:
+      summary: Record a meditation session
+      description: Track when a user completes a meditation.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - user_id
+                - meditation_id
+                - duration_minutes
+              properties:
+                user_id:
+                  type: string
+                  example: "user_123"
+                meditation_id:
+                  type: string
+                  example: "med_001"
+                duration_minutes:
+                  type: integer
+                  example: 10
+      responses:
+        '201':
+          description: Session recorded successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  session_id:
+                    type: string
+                    example: "sess_789"
+                  user_id:
+                    type: string
+                    example: "user_123"
+                  meditation_id:
+                    type: string
+                    example: "med_001"
+                  completed_at:
+                    type: string
+                    format: date-time
+                    example: "2025-09-22T10:30:00Z"
