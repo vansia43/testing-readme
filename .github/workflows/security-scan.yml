@@ -8,9 +8,15 @@ on:
   schedule:
     - cron: '0 2 * * 1'
 
+permissions:
+  contents: read
+  security-events: write
+
 jobs:
   dependency-check:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
     - uses: actions/checkout@v4
     
@@ -26,6 +32,9 @@ jobs:
 
   container-scan:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
     steps:
     - uses: actions/checkout@v4
     
@@ -46,6 +55,9 @@ jobs:
 
   infrastructure-scan:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
     steps:
     - uses: actions/checkout@v4
     
