@@ -17,13 +17,16 @@ def emit_transaction_started():
         tags=[f"env:{ENV}", f"region:{REGION}", f"service:{SERVICE_NAME}"]
     )
 
-def emit_transaction_time(duration_ms):
-    """Emit metric for transaction processing time"""
-    statsd.histogram(
-        "app.checkout.transaction_time",
-        duration_ms,
-        tags=[f"env:{ENV}", f"region:{REGION}", f"service:{SERVICE_NAME}"]
-    )
+# REMOVED: Unused metric identified by Vantage cost analysis
+# Last queried: >30 days ago | Related assets: None | Indexed volume: 12.4 MB
+# Estimated monthly savings: ~$108
+# def emit_transaction_time(duration_ms):
+#     """Emit metric for transaction processing time"""
+#     statsd.histogram(
+#         "app.checkout.transaction_time",
+#         duration_ms,
+#         tags=[f"env:{ENV}", f"region:{REGION}", f"service:{SERVICE_NAME}"]
+#     )
 
 def emit_transaction_completed(status):
     """Emit metric when a transaction is completed"""
