@@ -17,13 +17,14 @@ def emit_transaction_started():
         tags=[f"env:{ENV}", f"region:{REGION}", f"service:{SERVICE_NAME}"]
     )
 
- def emit_transaction_time(duration_ms):
-      """Emit metric for transaction processing time"""
-      statsd.histogram(
-          "app.checkout.transaction_time",
-          duration_ms,
-          tags=[f"env:{ENV}", f"region:{REGION}", f"service:{SERVICE_NAME}"]
-      )
+# COMMENTED OUT: Unused metric (>30 days, no references) - Vantage FinOps recommendation
+# def emit_transaction_time(duration_ms):
+#     """Emit metric for transaction processing time"""
+#     statsd.histogram(
+#         "app.checkout.transaction_time",
+#         duration_ms,
+#         tags=[f"env:{ENV}", f"region:{REGION}", f"service:{SERVICE_NAME}"]
+#     )
 
 def emit_transaction_completed(status):
     """Emit metric when a transaction is completed"""
