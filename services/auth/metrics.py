@@ -1,4 +1,4 @@
-"""
+ """
 Authentication Service Metrics
 Emits security and authentication metrics for the auth service.
 """
@@ -10,15 +10,12 @@ SERVICE_NAME = "auth"
 ENV = os.getenv("ENV", "prod")
 REGION = os.getenv("REGION", "us-east-1")
 
-# REMOVED: Unused metric identified by Vantage cost analysis
-# Last queried: >30 days ago | Related assets: None | Indexed volume: 8.1 MB
-# Estimated monthly savings: ~$85
-# def emit_login_attempts(username, success):
-#     """Emit metric for login attempts"""
-#     statsd.increment(
-#         "app.session.login_attempts",
-#         tags=[f"env:{ENV}", f"region:{REGION}", f"service:{SERVICE_NAME}", f"success:{success}"]
-#     )
+def emit_login_attempts(username, success):
+    """Emit metric for login attempts"""
+      statsd.increment(
+          "app.session.login_attempts",
+          tags=[f"env:{ENV}", f"region:{REGION}", f"service:{SERVICE_NAME}", f"success:{success}"]
+      )
 
 def emit_session_created(user_id):
     """Emit metric when a user session is created"""
