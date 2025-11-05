@@ -10,12 +10,13 @@ SERVICE_NAME = "notifications"
 ENV = os.getenv("ENV", "prod")
 REGION = os.getenv("REGION", "us-east-1")
 
-def emit_notification_delivered(notification_type):
-      """Emit metric for delivered notifications"""
-      statsd.increment(
-          "app.notifications.delivered",
-          tags=[f"env:{ENV}", f"region:{REGION}", f"service:{SERVICE_NAME}", f"type:{notification_type}"]
-      )
+# COMMENTED OUT: Unused metric (>30 days, no references) - Vantage FinOps recommendation
+# def emit_notification_delivered(notification_type):
+#     """Emit metric for delivered notifications"""
+#     statsd.increment(
+#         "app.notifications.delivered",
+#         tags=[f"env:{ENV}", f"region:{REGION}", f"service:{SERVICE_NAME}", f"type:{notification_type}"]
+#     )
 
 def emit_notification_queued(notification_type):
     """Emit metric when a notification is queued"""
