@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: meditation-app
+  labels:
+    app: meditation-api
+    environment: production
